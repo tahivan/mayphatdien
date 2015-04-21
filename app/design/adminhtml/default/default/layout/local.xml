@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="setCanLoadExtJs">
+                <flag>1</flag>
+            </action>
+            <action method="addJs"><script>prototype/prototype.js</script></action>
+            <action method="addItem"><type>js</type><name>extjs/fix-defer-before.js</name><params/><if/><condition>can_load_ext_js</condition></action>
+            <action method="addJs"><script>prototype/window.js</script></action>
+            <action method="addJs"><script>scriptaculous/builder.js</script></action>
+            <action method="addJs"><script>scriptaculous/effects.js</script></action>
+            <action method="addJs"><script>scriptaculous/dragdrop.js</script></action>
+            <action method="addJs"><script>scriptaculous/controls.js</script></action>
+            <action method="addJs"><script>scriptaculous/slider.js</script></action>
+            <action method="addJs"><script>lib/ccard.js</script></action>
+            <action method="addJs"><script>prototype/validation.js</script></action>
+            <action method="addJs"><script>varien/js.js</script></action>
+            <action method="addJs"><script>mage/translate.js</script></action>
+
+
+            <action method="addJs"><script>mage/adminhtml/hash.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/events.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/grid.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/tabs.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/form.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/accordion.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/tools.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/product.js</script></action>
+
+            <action method="addJs">
+                <script>mage/adminhtml/variables.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/wysiwyg/widget.js</script>
+            </action>
+            <action method="addJs">
+                <script>lib/flex.js</script>
+            </action>
+            <action method="addJs">
+                <script>lib/FABridge.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/flexuploader.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/loader.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/uploader.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/browser.js</script>
+            </action>
+            <action method="addJs">
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/magento.css</name>
+            </action>
+            <action method="addCss">
+                <stylesheet>lib/prototype/windows/themes/magento.css</stylesheet>
+            </action>
+
+        </reference>
+    </default>
+</layout>

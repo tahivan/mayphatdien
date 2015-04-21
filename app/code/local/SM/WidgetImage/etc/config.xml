@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SM_WidgetImage>
+            <version>0.1.0</version>
+        </SM_WidgetImage>
+    </modules>
+    <global>
+        <models>
+            <sm_widgetimage>
+                <class>SM_WidgetImage_Model</class>
+            </sm_widgetimage>
+        </models>
+        <blocks>
+            <sm_widgetimage>
+                <class>SM_WidgetImage_Block</class>
+            </sm_widgetimage>
+        </blocks>
+        <helpers>
+            <sm_widgetimage>
+                <class>SM_WidgetImage_Helper</class>
+            </sm_widgetimage>
+        </helpers>
+        <resources>
+            <sm_widgetimage_setup>
+                <setup>
+                    <module>SM_WidgetImage</module>
+                </setup>
+            </sm_widgetimage_setup>
+        </resources>
+    </global>
+</config>

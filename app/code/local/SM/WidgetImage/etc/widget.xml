@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<widgets>
+    <widget_upload_image type="sm_widgetimage/image" translate="name description" module="sm_widgetimage">
+        <name>Widget upload image</name>
+        <description type="desc">Add a widget image upload</description>
+        <parameters>
+            <image_3 translate="label">
+                <visible>1</visible>
+                <required>0</required>
+                <label>Image Third</label>
+                <type>label</type>
+                <helper_block>
+                    <type>sm_widgetimage/adminhtml_widget_option_upload</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Image...</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>340</sort_order>
+            </image_3>
+            <text1>
+                <label>Text 1</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+            </text1>
+        </parameters>
+    </widget_upload_image>
+</widgets>

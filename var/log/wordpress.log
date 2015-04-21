@@ -1,0 +1,10 @@
+2015-04-18T21:42:10+00:00 DEBUG (7): Curl error: <url> malformed
+2015-04-18T21:42:10+00:00 DEBUG (7): RedirectController._loginToWordpress: Curl error: <url> malformed
+2015-04-18T21:42:33+00:00 DEBUG (7): Curl error: <url> malformed
+2015-04-18T21:42:33+00:00 DEBUG (7): RedirectController._loginToWordpress: Curl error: <url> malformed
+2015-04-18T21:42:34+00:00 DEBUG (7): Curl error: <url> malformed
+2015-04-18T21:42:34+00:00 DEBUG (7): RedirectController._loginToWordpress: Curl error: <url> malformed
+2015-04-19T08:37:41+00:00 DEBUG (7): Curl error: <url> malformed
+2015-04-19T08:37:41+00:00 DEBUG (7): RedirectController._loginToWordpress: Curl error: <url> malformed
+2015-04-19T08:42:43+00:00 DEBUG (7): Curl error: <url> malformed
+2015-04-19T08:42:43+00:00 DEBUG (7): RedirectController._loginToWordpress: Curl error: <url> malformed

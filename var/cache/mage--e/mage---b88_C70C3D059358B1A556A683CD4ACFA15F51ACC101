@@ -1,0 +1,9 @@
+<div class="mw_footer">
+	<div class="footer">
+		<div class="footer-top">
+															<div class="clear_both"><span> </span></div>
+		</div>
+		<div class="footer-bottom"><address>&copy; 2013 Magento Demo Store. All Rights Reserved.Designed by <a href="http://mage-world.com/magento-themes" onclick="this.target='_blank'" >Mage-World</a></address></div>
+		<div class="clear_both"><span> </span></div>
+	</div>
+</div>

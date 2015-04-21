@@ -1,0 +1,64 @@
+<?php
+
+/*
+	{{block type="core/template" show_total="12"  template="catalog/product/newproduct.phtml"}}
+*/
+$totalPerPage = ($this->show_total) ? $this->show_total : 6;
+$counter = 4;
+$visibility = array(
+                      Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH,
+                      Mage_Catalog_Model_Product_Visibility::VISIBILITY_IN_CATALOG
+                  );
+
+$storeId = Mage::app()->getStore()->getId();
+$_productCollection = Mage::getResourceModel('reports/product_collection')
+                              ->addAttributeToSelect('*')                              
+                              ->addAttributeToFilter('visibility', $visibility)
+                              ->setOrder('created_at', 'desc')
+							  ->setPageSize($totalPerPage);
+
+//Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($_productCollection);
+//Mage::getSingleton('cataloginventory/stock')->addInStockFilterToCollection($_productCollection);
+
+
+?>
+
+<div class="new-product">
+	<?php if(count($_productCollection)>0):?>
+		<div class="new-product-title">
+			<strong><?php echo $this->__('New Products')?></strong>
+		</div>
+	<?php endif;?>
+	<div class="new-product-content">
+	
+	<?php $_collectionSize = count($_productCollection) ?>
+	<?php $_columnCount = 3; ?>
+	<?php $i=0; foreach ($_productCollection as $_product): ?>
+		<?php if($i++%$_columnCount==0): ?>
+			<ol class="grid-row">
+		<?php endif; ?>
+			<li class="item <?php if($i%3==1):?> first <?php elseif($i%3==0):?>last<?php endif;?>">
+				<a class="product-image" href="<?php echo $_product->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(150, 150); ?>"  width="150" height="150" alt="<?php echo $this->htmlEscape($_product->getName()) ?>"/></a>
+				
+				<h2><a class="product-name" href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h2>
+				<div class="see-all">
+							<span><?php				
+			try{
+				$categories = $_product->getCategoryIds();				
+				$category = Mage::getModel('catalog/category')->load($categories[0]);
+				echo 'See all '.'<a href="'.$category->getUrl().'" >'.$category->getName().'</a>';				
+			} catch(Exception $e){}
+			?></span></div>
+				<div class="clear_both"></div>
+				<button type="button" class="button addcart"  onclick="setLocation('<?php echo  Mage::helper('checkout/cart')->getAddUrl($_product);?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+			</li>
+			<?php if($i%$_columnCount==0 || $i==$_collectionSize): ?>
+			</ol>
+			<?php endif; ?>
+			<?php //if($i>=3):break; endif;?>
+		<?php endforeach ?>
+		<script type="text/javascript">decorateGeneric($$('.grid-row'), ['last', 'odd', 'even']);</script>
+	<div class="clear_both"><span></span></div>	
+	</div>
+</div>
+
