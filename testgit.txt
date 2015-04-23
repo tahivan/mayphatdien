@@ -1,0 +1,1 @@
+git config remote.origin.url https://tahivan:thainv@1711@github.com/tahivan/mayphatdien.git
