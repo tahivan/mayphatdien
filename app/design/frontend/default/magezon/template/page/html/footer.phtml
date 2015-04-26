@@ -24,16 +24,18 @@
  * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<div class="mw_footer">
-	<div class="footer">
-		<div class="footer-top">
-			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('about-us')->toHtml() ?>
-			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('other-news')->toHtml() ?>
-			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('more-info')->toHtml() ?>
-			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('web-link')->toHtml() ?>
+<footer>
+	<div class="footer-container">
+		<div class="footer">
+			<div class="footer-top">
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('about-us')->toHtml() ?>
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('other-news')->toHtml() ?>
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('more-info')->toHtml() ?>
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('web-link')->toHtml() ?>
+				<div class="clear_both"><span> </span></div>
+			</div>
+			<div class="footer-bottom"><address><?php echo $this->getCopyright() ?><?php echo $this->__('Designed by ') ?><a href="http://mage-world.com/magento-themes" onclick="this.target='_blank'" ><?php echo $this->__('Mage-World') ?></a></address></div>
 			<div class="clear_both"><span> </span></div>
 		</div>
-		<div class="footer-bottom"><address><?php echo $this->getCopyright() ?><?php echo $this->__('Designed by ') ?><a href="http://mage-world.com/magento-themes" onclick="this.target='_blank'" ><?php echo $this->__('Mage-World') ?></a></address></div>
-		<div class="clear_both"><span> </span></div>
 	</div>
-</div>
+</footer>
