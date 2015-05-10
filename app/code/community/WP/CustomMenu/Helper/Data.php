@@ -43,18 +43,18 @@ class WP_CustomMenu_Helper_Data extends Mage_Core_Helper_Abstract
             $_menuAjaxUrl = '';
         }
         $this->_menuData = array(
-            '_block'                        => $block,
-            '_categories'                   => $categories,
-            '_moblieMenuAjaxUrl'            => $_moblieMenuAjaxUrl,
-            '_menuAjaxUrl'                  => $_menuAjaxUrl,
-            '_showHomeLink'                 => Mage::getStoreConfig('custom_menu/general/show_home_link'),
-            '_popupWidth'                   => Mage::getStoreConfig('custom_menu/popup/width') + 0,
-            '_popupTopOffset'               => Mage::getStoreConfig('custom_menu/popup/top_offset') + 0,
-            '_popupDelayBeforeDisplaying'   => Mage::getStoreConfig('custom_menu/popup/delay_displaying') + 0,
-            '_popupDelayBeforeHiding'       => Mage::getStoreConfig('custom_menu/popup/delay_hiding') + 0,
-            '_rtl'                          => Mage::getStoreConfig('custom_menu/general/rtl') + 0,
-            '_mobileMenuEnabled'            => Mage::getStoreConfig('custom_menu/general/mobile_menu') + 0,
-            '_mobileMenuWidthInit'          => Mage::getStoreConfig('custom_menu/general/mobile_menu_width_init') + 0,
+            '_block' => $block,
+            '_categories' => $categories,
+            '_moblieMenuAjaxUrl' => $_moblieMenuAjaxUrl,
+            '_menuAjaxUrl' => $_menuAjaxUrl,
+            '_showHomeLink' => Mage::getStoreConfig('custom_menu/general/show_home_link'),
+            '_popupWidth' => Mage::getStoreConfig('custom_menu/popup/width') + 0,
+            '_popupTopOffset' => Mage::getStoreConfig('custom_menu/popup/top_offset') + 0,
+            '_popupDelayBeforeDisplaying' => Mage::getStoreConfig('custom_menu/popup/delay_displaying') + 0,
+            '_popupDelayBeforeHiding' => Mage::getStoreConfig('custom_menu/popup/delay_hiding') + 0,
+            '_rtl' => Mage::getStoreConfig('custom_menu/general/rtl') + 0,
+            '_mobileMenuEnabled' => Mage::getStoreConfig('custom_menu/general/mobile_menu') + 0,
+            '_mobileMenuWidthInit' => Mage::getStoreConfig('custom_menu/general/mobile_menu_width_init') + 0,
         );
         return $this->_menuData;
     }
@@ -65,9 +65,9 @@ class WP_CustomMenu_Helper_Data extends Mage_Core_Helper_Abstract
         extract($menuData);
         if (!$_mobileMenuEnabled) return '';
         // --- Home Link ---
-        $homeLinkUrl        = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
-        $homeLinkText       = $this->__('Home');
-        $homeLink           = '';
+        $homeLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+        $homeLinkText = $this->__('Trang chủ');
+        $homeLink = '';
         if ($_showHomeLink) {
             $homeLink = <<<HTML
 <div id="menu-mobile-0" class="menu-mobile level0">
@@ -102,20 +102,71 @@ HTML;
         $menuData = Mage::helper('custommenu')->getMenuData();
         extract($menuData);
         // --- Home Link ---
-        $homeLinkUrl        = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
-        $homeLinkText       = $this->__('Home');
-        $homeLink           = '';
+        $homeLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+        $homeLinkText = $this->__('Trang chủ');
+        $homeLink = '';
         if ($_showHomeLink) {
-            $homeLink = <<<HTML
-<div class="menu">
-    <div class="parentMenu menu0">
-        <a href="$homeLinkUrl">
-            <span>$homeLinkText</span>
-        </a>
-    </div>
-</div>
+            $homeLink =
+                <<<HTML
+                <div class="menu">
+                    <div class="parentMenu menu0">
+                        <a href="$homeLinkUrl">
+                            <span>$homeLinkText</span>
+                        </a>
+                    </div>
+                </div>
 HTML;
-    }
+        }
+
+        // --- Giới thiệu Link ---
+        $introduceLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'about-us';
+        $introduceLinkText = $this->__('Giới thiệu');
+        $introduceLink = <<<HTML
+                <div class="menu">
+                    <div class="parentMenu menu0">
+                        <a href="$introduceLinkUrl">
+                            <span>$introduceLinkText</span>
+                        </a>
+                    </div>
+                </div>
+HTML;
+
+        //--- Dự án Link---
+        $prjLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+        $prjLinkText = $this->__('Dự án');
+        $prjLink = <<<HTML
+                <div class="menu">
+                    <div class="parentMenu menu0">
+                        <a href="$prjLinkUrl">
+                            <span>$prjLinkText</span>
+                        </a>
+                    </div>
+                </div>
+HTML;
+        //---Tin tức Link---
+        $newLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'blog';
+        $newLinkText = $this->__('Tin tức');
+        $newLink = <<<HTML
+                <div class="menu">
+                    <div class="parentMenu menu0">
+                        <a href="$newLinkUrl">
+                            <span>$newLinkText</span>
+                        </a>
+                    </div>
+                </div>
+HTML;
+        //---Liên hệ Link---
+        $contactLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'contacts';
+        $contactLinkText = $this->__('Liên hệ');
+        $contactLink = <<<HTML
+                <div class="menu">
+                    <div class="parentMenu menu0">
+                        <a href="$contactLinkUrl">
+                            <span>$contactLinkText</span>
+                        </a>
+                    </div>
+                </div>
+HTML;
         // --- Menu Content ---
         $menuContent = '';
         $menuContentArray = array();
@@ -131,11 +182,16 @@ HTML;
         if (count($popupMenuArray)) {
             $popupMenuContent = implode("\n", $popupMenuArray);
         }
+
         // --- Result ---
         $topMenu = <<<HTML
-$homeLink
-$topMenuContent
-<div class="clearBoth"></div>
+        $homeLink
+        $introduceLink
+        $topMenuContent
+        $prjLink
+        $newLink
+        $contactLink
+        <div class="clearBoth"></div>
 HTML;
         return array('topMenu' => $topMenu, 'popupMenu' => $popupMenuContent);
     }
