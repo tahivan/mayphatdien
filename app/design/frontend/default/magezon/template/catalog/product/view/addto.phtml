@@ -33,5 +33,8 @@
 <?php if($_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product) ): ?>
     <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" rel="nofollow"><?php echo $this->__('Add to Compare') ?></a></li>
 <?php endif; ?>
+    <?php if($_downloadFileUrl=$_product->getPdfDownloadUrl()): ?>
+        <li><span class="separator">|</span> <a href="<?php echo $_downloadFileUrl ?>" rel="nofollow" class="link-print"><?php echo $this->__('Download file') ?></a></li>
+    <?php endif; ?>
 </ul>
 <div class="clear_both"><span></span></div>
