@@ -119,7 +119,7 @@ HTML;
         }
 
         // --- Giới thiệu Link ---
-        $introduceLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'about-us';
+        $introduceLinkUrl = '#';
         $introduceLinkText = $this->__('Giới thiệu');
         $introduceLink = <<<HTML
                 <div onmouseout="wpHideMenuPopup(this, event, 'popup2', 'menu2')" onmouseover="wpShowMenuPopup(this, event, 'popup2');" class="menu" id="menu2">
