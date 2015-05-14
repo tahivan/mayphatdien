@@ -34,6 +34,7 @@
 <?php
     $_helper = $this->helper('catalog/output');
     $_product = $this->getProduct();
+    $_showPrice = $_product->getAllowShowPrice();
 ?>
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
@@ -62,9 +63,10 @@
 
 <!--				--><?php //echo $this->getReviewsSummaryHtml($_product, false, true)?>
 				<?php echo $this->getChildHtml('alert_urls') ?>
-				<?php echo $this->getChildHtml('product_type_data') ?>
-				<?php echo $this->getChildHtml('tierprices') ?>
-
+                <?php if($_showPrice == '1'): ?>
+                    <?php echo $this->getChildHtml('product_type_data') ?>
+                    <?php echo $this->getChildHtml('tierprices') ?>
+                <?php endif; ?>
 				<?php if (!$this->hasOptions()):?>
 					<div class="add-to-box">
 						<?php if($_product->isSaleable()): ?>

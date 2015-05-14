@@ -31,6 +31,10 @@
  * @see Mage_Catalog_Block_Product_List
  */
 ?>
+<?php
+    $currentCategory = Mage::registry('current_category');
+    $isShowPrice = $currentCategory->getShowProductPrice();
+?>
 <?php $_productCollection=$this->getLoadedProductCollection() ?>
 <?php if(!$_productCollection->count()): ?>
 <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
@@ -58,7 +62,9 @@
                 <?php if($_product->getRatingSummary()): ?>
                 <?php echo $this->getReviewsSummaryHtml($_product) ?>
                 <?php endif; ?>
-                <?php echo $this->getPriceHtml($_product, true) ?>
+                <?php if($isShowPrice == '1'): ?>
+                    <?php echo $this->getPriceHtml($_product, true) ?>
+                <?php endif; ?>
                 <?php if($_product->isSaleable()): ?>
 <!--                <p>-->
 <!--                    <button class="button addcart" onclick="setLocation('--><?php //echo $this->getAddToCartUrl($_product) ?><!--')">-->
@@ -116,7 +122,9 @@
 						<a class="product-name" href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->htmlEscape($_product->getName())?></a>
 					</h2>
 					
-					<?php echo $this->getPriceHtml($_product, true) ?>
+                    <?php if($isShowPrice == '1'): ?>
+                        <?php echo $this->getPriceHtml($_product, true) ?>
+                    <?php endif; ?>
 					<div class="clear_both"><span> </span></div>
 					
 					<?php //if($_product->getRatingSummary()): ?>
