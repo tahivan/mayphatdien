@@ -53,7 +53,27 @@ class WP_CustomMenu_Block_Navigation extends Mage_Catalog_Block_Navigation
 
     public function getPopupMenuArray()
     {
+        $this->_manualHackAddPopUpCategory();
         return $this->_popupMenu;
+    }
+
+    /**
+     * Quick hack add sub menu
+     */
+    public function _manualHackAddPopUpCategory(){
+        $about_us_url = $this->getUrl('about-us');
+        $about_fgwilson_url = $this->getUrl('about-fgwilson');
+
+        $htmlPopup = array();
+        $htmlPopup[] = '<div id="popup2" class="wp-custom-menu-popup" onmouseout="wpHideMenuPopup(this, event, \'popup2\', \'menu2\')" onmouseover="wpPopupOver(this, event, \'popup2\', \'menu2\')">';
+            $htmlPopup[] = '<div class="block1">';
+                $htmlPopup[] = '<div class="column first odd"><div class="itemMenu level1"><a href="'.$about_us_url.'" class="itemMenuName level1"><span>Công ty Ban Mai</span></a></div></div>';
+                $htmlPopup[] = '<div class="column last even"><div class="itemMenu level1"><a href="'.$about_fgwilson_url.'" class="itemMenuName level1"><span>Fgwilson</span></a></div></div>';
+                $htmlPopup[] = '<div class="clearBoth"></div>';
+            $htmlPopup[] = '</div>';
+        $htmlPopup[] = '</div>';
+
+        $this->_popupMenu[] = implode("\n", $htmlPopup);
     }
 
     public function drawCustomMenuItem($category, $level = 0, $last = false)

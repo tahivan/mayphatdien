@@ -122,7 +122,7 @@ HTML;
         $introduceLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'about-us';
         $introduceLinkText = $this->__('Giới thiệu');
         $introduceLink = <<<HTML
-                <div class="menu">
+                <div onmouseout="wpHideMenuPopup(this, event, 'popup2', 'menu2')" onmouseover="wpShowMenuPopup(this, event, 'popup2');" class="menu" id="menu2">
                     <div class="parentMenu menu0">
                         <a href="$introduceLinkUrl">
                             <span>$introduceLinkText</span>
