@@ -29,7 +29,7 @@
     Mage::app()->getLocale()->getDateTimeFormat($formatType): 
     Mage::getStoreConfig(NeoTheme_Blog_Helper_Data::XPATH_CONFIG_DATETIME_CUSTOM_FORMAT);
 ?>
-<div class="blog blog-detail">
+<div class="blog blog-detail fieldset" style="margin: 0">
     <article class="post">
     	<div class="page-title post-title"><h1><?php echo $this->getPost()->getTitle(); ?></h1></div>
         
@@ -88,3 +88,13 @@
     </div>
 </div>
 <?php     Zend_Date::setOptions(array('format_type' => 'iso'));     ?>
+<script type="text/javascript" language="JavaScript">
+    jQuery(document).ready(function($){
+        if($('.post-content').find('img').length > 0)
+        {
+            $('.post-content img').css('max-width',$('.post-content').width());
+        }
+
+    });
+
+</script>

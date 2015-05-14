@@ -47,7 +47,11 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>varien/menu.js</script></action>
                 <action method="addJs" ifconfig="dev/translate_inline/active"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
-				<action method="addCss"><stylesheet>css/screen.css</stylesheet></action>
+
+                <action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
+
+
+                <action method="addCss"><stylesheet>css/screen.css</stylesheet></action>
 
                 <action method="addItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>lt IE 8</if></action>
 

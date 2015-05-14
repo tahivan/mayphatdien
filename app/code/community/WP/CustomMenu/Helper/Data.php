@@ -132,7 +132,7 @@ HTML;
 HTML;
 
         //--- Dự án Link---
-        $prjLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+        $prjLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'blog/du-an';
         $prjLinkText = $this->__('Dự án');
         $prjLink = <<<HTML
                 <div class="menu">
@@ -144,7 +144,7 @@ HTML;
                 </div>
 HTML;
         //---Tin tức Link---
-        $newLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'blog';
+        $newLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'blog/tin-tuc';
         $newLinkText = $this->__('Tin tức');
         $newLink = <<<HTML
                 <div class="menu">
@@ -163,6 +163,18 @@ HTML;
                     <div class="parentMenu menu0">
                         <a href="$contactLinkUrl">
                             <span>$contactLinkText</span>
+                        </a>
+                    </div>
+                </div>
+HTML;
+        //---Dịch vụ Link---
+        $serviceLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'blog/dich-vu';
+        $serviceLinkText = $this->__('Dịch vụ');
+        $serviceLink = <<<HTML
+                <div class="menu">
+                    <div class="parentMenu menu0">
+                        <a href="$serviceLinkUrl">
+                            <span>$serviceLinkText</span>
                         </a>
                     </div>
                 </div>
@@ -188,6 +200,7 @@ HTML;
         $homeLink
         $introduceLink
         $topMenuContent
+        $serviceLink
         $prjLink
         $newLink
         $contactLink
