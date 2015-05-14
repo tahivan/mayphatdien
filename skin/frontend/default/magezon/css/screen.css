@@ -804,7 +804,7 @@ font-weight:bold;
 .category-title { border-bottom:none; margin-bottom:10px; }
 .category-title  h2{ font-size:14px; font-weight:normal; color:#146eb4;}
 .category-title h1{font-size:14px; font-weight:normal; color:#146eb4;}
-.category-image { display:block; margin:0 auto; width:510px; margin-bottom:10px; }
+.category-image { display:block; margin:0 auto; width:100%; margin-bottom:10px; }
 .category-products {}
 
 /* View Type: Grid */

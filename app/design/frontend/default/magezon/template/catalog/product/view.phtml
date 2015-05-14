@@ -57,10 +57,10 @@
 				</div>
 
 				<?php if ($this->canEmailToFriend()): ?>
-					<a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>" rel="nofollow"><?php echo $this->__('Email to a Friend') ?></a>
+<!--					<a href="--><?php //echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?><!--" rel="nofollow">--><?php //echo $this->__('Email to a Friend') ?><!--</a>-->
 				<?php endif; ?>
 
-				<?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+<!--				--><?php //echo $this->getReviewsSummaryHtml($_product, false, true)?>
 				<?php echo $this->getChildHtml('alert_urls') ?>
 				<?php echo $this->getChildHtml('product_type_data') ?>
 				<?php echo $this->getChildHtml('tierprices') ?>
@@ -68,7 +68,7 @@
 				<?php if (!$this->hasOptions()):?>
 					<div class="add-to-box">
 						<?php if($_product->isSaleable()): ?>
-							<?php echo $this->getChildHtml('addtocart') ?>
+<!--							--><?php //echo $this->getChildHtml('addtocart') ?>
 							<div class="clear_both"><span></span></div>
 							<?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
 								<span class="or"><?php echo $this->__('OR') ?></span>

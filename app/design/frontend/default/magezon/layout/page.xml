@@ -31,7 +31,7 @@ Default layout, loads most of the pages
 -->
 
     <default>
-        <block type="page/html" name="root" output="toHtml" template="page/3columns.phtml">
+        <block type="page/html" name="root" output="toHtml" template="page/2columns-left.phtml">
 
             <block type="page/html_head" name="head" as="head">
                 <action method="addJs"><script>prototype/prototype.js</script></action>
@@ -47,7 +47,7 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>varien/menu.js</script></action>
                 <action method="addJs" ifconfig="dev/translate_inline/active"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
-				<action method="addCss"><stylesheet>css/screen.css</stylesheet></action>				
+				<action method="addCss"><stylesheet>css/screen.css</stylesheet></action>
 
                 <action method="addItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>lt IE 8</if></action>
 
@@ -57,7 +57,7 @@ Default layout, loads most of the pages
                 <action method="addCss"><stylesheet>css/print.css</stylesheet><params>media="print"</params></action>
 				<block type="page/html" name="store_language_js" as="store_language_js" template="page/html/head-translator.phtml"/>
             </block>
-			
+
 			<block type="page/html_notices" name="global_notices" as="global_notices" template="page/html/notices.phtml" />
 
             <block type="page/html_header" name="header" as="header">
@@ -82,7 +82,7 @@ Default layout, loads most of the pages
 				<block type="core/text_list" name="top.menu" as="topMenu"/>
                 <block type="page/switch" name="store_switcher" as="store_switcher" template="page/switch/stores.phtml"/>
                 <block type="page/template_links" name="footer_links" as="footer_links" template="page/template/links-follow.phtml"/>
-				
+
             </block>
 
             <block type="core/text_list" name="before_body_end" as="before_body_end"/>

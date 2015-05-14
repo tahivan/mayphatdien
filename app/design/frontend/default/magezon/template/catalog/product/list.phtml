@@ -60,7 +60,13 @@
                 <?php endif; ?>
                 <?php echo $this->getPriceHtml($_product, true) ?>
                 <?php if($_product->isSaleable()): ?>
-                <p><button class="button addcart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+<!--                <p>-->
+<!--                    <button class="button addcart" onclick="setLocation('--><?php //echo $this->getAddToCartUrl($_product) ?><!--')">-->
+<!--                        <span><span>-->
+<!--                                --><?php //echo $this->__('Add to Cart') ?>
+<!--                        </span></span>-->
+<!--                    </button>-->
+<!--                </p>-->
                 <?php else: ?>
                 <p class="availability"><span class="out-of-stock"><?php echo $this->__('Out of stock') ?></span></p>
                 <?php endif; ?>
@@ -93,7 +99,7 @@
     <?php $_collectionSize = $_productCollection->count() ?>
   <div class="products-grid" id="products-grid-table">
     <?php //$_columnCount = $this->getColumnCount(); 
-		$_columnCount=3;
+		$_columnCount=4;
 	?>
     <?php $i=0; foreach ($_productCollection as $_product): ?>
         <?php if ($i++%$_columnCount==0): ?>
@@ -103,7 +109,7 @@
 				
 				<div class="product-item-grid"><a class="product-image" href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>">
 							
-						<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(150,150); ?>" width="150" height="150" alt="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" />
+						<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(120,120); ?>" alt="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" />
 					</a>
 					
 					<h2 >
@@ -118,7 +124,11 @@
 					<?php //endif; ?>
 					
 					<div class="grid-addcart"><?php if($_product->isSaleable()): ?>
-						<button type="button" class="button addcart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+<!--						<button type="button" class="button addcart" onclick="setLocation('--><?php ///*echo $this->getAddToCartUrl($_product) */?><!--')">-->
+<!--                            <span><span>-->
+<!--                                    --><?php //echo $this->__('Add to Cart') ?>
+<!--                            </span></span>-->
+<!--                        </button>-->
 					<?php else:?>
 						 <p class="availability"><span class="out-of-stock"><?php echo $this->__('Out of stock') ?></span></p>
 					<?php endif;?>
@@ -136,14 +146,14 @@
                     </ul>
 				</div>
             </li>
-        <?php if ($i%3==0 && $i!=$_collectionSize): ?>
+        <?php if ($i%$_columnCount==0 && $i!=$_collectionSize): ?>
         </ol>
         <?php endif ?>
         <?php endforeach ?>
-        <?php for($i;$i%3!=0;$i++): ?>
+        <?php for($i;$i%$_columnCount!=0;$i++): ?>
               <li class="empty">&nbsp;</li>
         <?php endfor ?>
-        <?php if ($i%3==0): ?>
+        <?php if ($i%$_columnCount==0): ?>
         </ol>
         <?php endif ?>
 		<div class="clear_both"><span> </span></div>
