@@ -1287,8 +1287,8 @@ padding:4px 8px;
 .mw_menu_head h4.title{background-color:#43AAE4;color:#fff !important;}
 
 .block-footer{ float:left; padding-right:17px; text-align:left; border-right: 1px solid #e3e3e3; height: auto; padding-left: 17px;}
-.block-footer-1, .block-footer-2 { width:272px;}
-.block-footer-3, .block-footer-4 { width:151px;}
+.block-footer-1 { width:auto;}
+.block-footer-2 { width:210px;}
 .block-footer-4{ float:right; padding-right:0px;}
 .block-footer-1 {
     padding-left: 0 !important;
@@ -1319,7 +1319,7 @@ padding:4px 8px;
 	cursor: pointer;
 }
 .block-footer-4{ border-right: none; float: right; padding-right: 0;}
-.block-footer-3, .block-footer-4{ width: 137px}
+.block-footer-3, .block-footer-4{ width: 130px}
 .footer-container .footer .block-footer-4 li{
 	padding-bottom: 7px;
 }
