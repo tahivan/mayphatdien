@@ -85,7 +85,20 @@ extends Mage_Adminhtml_Block_Widget_Form {
             ),
           ),
           ));
-
+        $fieldset->addField('view_type', 'select', array(
+            'label'     => Mage::helper('neotheme_blog')->__('View type'),
+            'name'      => 'view_type',
+            'values'    => array(
+                array(
+                    'value'     => 1,
+                    'label'     => Mage::helper('neotheme_blog')->__('Grid'),
+                ),
+                array(
+                    'value'     => 0,
+                    'label'     => Mage::helper('neotheme_blog')->__('List'),
+                ),
+            ),
+        ));
         $isElementDisabled = false;
         if (!Mage::app()->isSingleStoreMode()) {
             $fieldset->addField('store_ids', 'multiselect', array(

@@ -70,6 +70,13 @@ class NeoTheme_Blog_Block_Adminhtml_Post_Edit_Tab_Content extends Mage_Adminhtml
             'config'    => $wysiwygConfig
         ));
 
+        $fieldset->addField('image', 'image', array(
+            'name'      => 'image',
+            'label'     => Mage::helper('cms')->__('Image'),
+            'title'     => Mage::helper('cms')->__('Image'),
+            'required'  => false
+        ));
+
         $contentField = $fieldset->addField('content_html', 'editor', array(
             'name'      => 'content_html',
             'style'     => 'min-width:615px;',
@@ -102,8 +109,12 @@ class NeoTheme_Blog_Block_Adminhtml_Post_Edit_Tab_Content extends Mage_Adminhtml
             $form->setValues(Mage::getSingleton('adminhtml/session')->getBlogPostData());
             Mage::getSingleton('adminhtml/session')->setBlogPostData(null);
 		} elseif (Mage::registry('current_post')) {
-			$data =  (!Mage::registry('current_post')->getId())? $this->getDefaultValues() : Mage::registry('current_post')->getData(); 
-			$form->setValues($data);
+			$data =  (!Mage::registry('current_post')->getId())? $this->getDefaultValues() : Mage::registry('current_post')->getData();
+            if (isset($data['image']) && $data['image']) {
+                $imageName = Mage::helper('neotheme_blog')->reImageName($data['image']);
+                $data['image'] = 'blog_post_image' . '/' . $imageName;
+            }
+            $form->setValues($data);
 		} 
         return parent::_prepareForm();
     }

@@ -168,7 +168,7 @@ HTML;
                 </div>
 HTML;
         //---Dịch vụ Link---
-        $serviceLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'blog/dich-vu';
+        $serviceLinkUrl = Mage::helper('cms/page')->getPageUrl('service');
         $serviceLinkText = $this->__('Dịch vụ');
         $serviceLink = <<<HTML
                 <div class="menu">

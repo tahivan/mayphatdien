@@ -124,4 +124,16 @@ class NeoTheme_Blog_Helper_Data extends Mage_Core_Helper_Abstract {
         return $width;
     }
 
+    public function reImageName($imageName) {
+
+        $subname = substr($imageName, 0, 2);
+        $array = array();
+        $subDir1 = substr($subname, 0, 1);
+        $subDir2 = substr($subname, 1, 1);
+        $array[0] = $subDir1;
+        $array[1] = $subDir2;
+        $name = $array[0] . '/' . $array[1] . '/' . $imageName;
+
+        return strtolower($name);
+    }
 }

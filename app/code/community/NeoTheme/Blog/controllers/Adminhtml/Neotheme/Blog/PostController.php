@@ -128,6 +128,15 @@ class NeoTheme_Blog_Adminhtml_Neotheme_Blog_PostController extends NeoTheme_Blog
             if (array_key_exists('cms_identifier', $data)) {
                 $data['cms_identifier'] = strtolower(trim(preg_replace('/\W+/', '-', $data['cms_identifier'])));
             }
+            if (isset($data['image']['delete'])) {
+                $this->deleteImageFile($data['image']['value']);
+            }
+            $image = $this->uploadBannerImage();
+            if ($image || (isset($data['image']['delete']) && $data['image']['delete'])) {
+                $data['image'] = $image;
+            } else {
+                unset($data['image']);
+            }
             $this->_blogPostData = $data;
         }
         return $this->_blogPostData;
@@ -201,6 +210,32 @@ class NeoTheme_Blog_Adminhtml_Neotheme_Blog_PostController extends NeoTheme_Blog
         $this->_redirect('*/*/', array('store' => $storeId));
     }
 
+    public static function uploadBannerImage() {
+        $banner_image_path = Mage::getBaseDir('media') . DS . 'blog_post_image';
+        $image = "";
+        if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
+            try {
+                /* Starting upload */
+                $uploader = new Varien_File_Uploader('image');
+
+                // Any extention would work
+                $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
+                $uploader->setAllowRenameFiles(true);
+
+                $uploader->setFilesDispersion(true);
+
+                $uploader->save($banner_image_path, $uploader->getCorrectFileName($_FILES['image']['name']));
+                // Add by Hoang Vuong: 30/08/2013
+                $image = substr(strrchr($uploader->getUploadedFileName(), "/"), 1);
+            } catch (Exception $e) {
+
+            }
+
+            // $image = $_FILES['image']['name'];
+        }
+        return $image;
+    }
+
     public function deleteAction() {
         if ($this->getRequest()->getParam('id') > 0) {
             try {
@@ -252,4 +287,18 @@ class NeoTheme_Blog_Adminhtml_Neotheme_Blog_PostController extends NeoTheme_Blog
         );
     }
 
+    public function deleteImageFile($image) {
+        if (!$image) {
+            return;
+        }
+        $banner_image_path = $_SERVER['DOCUMENT_ROOT'] .DS.'media'.DS. $image;
+        if (!file_exists($banner_image_path)) {
+            return;
+        }
+        try {
+            unlink($banner_image_path);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 }

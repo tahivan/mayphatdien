@@ -1286,7 +1286,7 @@ padding:4px 8px;
 #top_banner{float:none;margin-bottom:22px;}
 .mw_menu_head h4.title{background-color:#43AAE4;color:#fff !important;}
 
-.block-footer{ float:left; padding-right:17px; text-align:left; border-right: 1px solid #e3e3e3; height: 148px; padding-left: 17px;}
+.block-footer{ float:left; padding-right:17px; text-align:left; border-right: 1px solid #e3e3e3; height: auto; padding-left: 17px;}
 .block-footer-1, .block-footer-2 { width:272px;}
 .block-footer-3, .block-footer-4 { width:151px;}
 .block-footer-4{ float:right; padding-right:0px;}
