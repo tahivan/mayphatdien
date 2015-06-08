@@ -28,7 +28,6 @@
 <?php
 $category = Mage::registry('current_blog_category');
 $collection = $this->getCollection();
-$catCollection = $this->getCatCollection();
 ?>
 <!--SHOW POST-->
 <?php if($category->getShowChildCategoryFirst() == '0'): ?>
@@ -57,48 +56,35 @@ $catCollection = $this->getCatCollection();
                         <div id="frame">
                             <?php $i = 1; ?>
                             <?php foreach ($collection as $post): ?>
-                                <div id="slider-<?php echo $i; ?>" class="product-block">
+                                <div style="width: 300px; height: 300px" id="slider-<?php echo $i; ?>" class="product-block">
                                     <a href="<?php echo $post->getReadMoreUrl(); ?>">
-                                        <img src="<?php echo Mage::getBaseUrl('media') . 'blog_post_image' .'/' . Mage::helper('neotheme_blog')->reImageName($post->getImage()); ?>" class="product-image">
+                                        <img style="width: 200px;height: 200px" src="<?php echo Mage::getBaseUrl('media') . 'blog_post_image' .'/' . Mage::helper('neotheme_blog')->reImageName($post->getImage()); ?>" class="product-image">
                                     </a>
                                     <br><br>
-                                    <h4><a href="<?php echo $post->getReadMoreUrl(); ?>"><?php echo $post->getTitle(); ?></a></h4>
+                                    <h3><a href="<?php echo $post->getReadMoreUrl(); ?>"><?php echo $post->getTitle(); ?></a></h3>
                                 </div>
-                            <?php endforeach; ?>
+                            <?php $i++;endforeach; ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    <?php endif; ?>
+        <div class="toolbar"><?php echo $this->getPagerHtml(); ?></div>
+        <?php endif; ?>
 <?php endif; ?>
 <!--SHOW SUB CATEGORY-->
 <?php else:?>
 
-    <?php if (!$catCollection->count()): ?>
+    <?php if (!$collection->count()): ?>
         <div class="note-msg"><?php echo Mage::helper('neotheme_blog')->__('There are no project in this category'); ?></div>
     <?php else: ?>
-        <?php if ($category->getViewType() == 0): ?>
-            <?php $i = 1;
-            foreach ($catCollection as $post): ?>
-                <div class="blog blog-summary fieldset" style="<?php if ($i == 1) {
-                    echo "margin: 0;";
-                } ?>">
-                    <?php //maybe a better way of doing this maybe a getChildHtml('summary_');
-
-                    echo $this->getSummaryBlock($post)->toHtml();
-                    ?>
-                </div>
-                <?php $i++; endforeach; ?>
-            <div class="toolbar"><?php echo $this->getPagerHtml(); ?></div>
-        <?php else: ?>
             <div class="std">
                 <div class="fp" id="fp">
                     <div id="slider">
                         <div id="main-slider">
                             <div id="frame">
                                 <?php $i = 1; ?>
-                                <?php foreach ($catCollection as $post): ?>
+                                <?php foreach ($collection as $post): ?>
                                     <div style="width: 300px; height: 300px" id="slider-<?php echo $i; ?>" class="product-block">
                                         <a href="<?php echo Mage::getBaseUrl().'blog/'.$post->getCmsIdentifier(); ?>">
                                             <img style="width: 200px;height: 200px" src="<?php echo Mage::getBaseUrl('media') . 'blog_category_image' .'/' . Mage::helper('neotheme_blog')->reImageName($post->getImage()); ?>" class="product-image">
@@ -112,6 +98,7 @@ $catCollection = $this->getCatCollection();
                     </div>
                 </div>
             </div>
-        <?php endif; ?>
+            <div class="toolbar"><?php echo $this->getPagerHtml(); ?></div>
+<!--        --><?php //endif; ?>
     <?php endif; ?>
 <?php endif; ?>

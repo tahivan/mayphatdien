@@ -63,35 +63,47 @@ class NeoTheme_Blog_Block_Post_List extends Mage_Core_Block_Template implements 
      */
     function _prepareCollection() {
 
-        $this->_collection = Mage::getModel('neotheme_blog/post')
+        $category = $this->getCategory();
+        $catId = $category->getId();
+
+        if($category->getShowChildCategoryFirst() == '0'){/*Show normal post*/
+            $this->_collection = Mage::getModel('neotheme_blog/post')
                 ->getCollection()
                 ->addStoreFilter()
                 ->addStatusFilter(NeoTheme_Blog_Model_Post::STATUS_ACTIVE)
                 ->addPublishFilter()
                 ->setPostOrder();
-        if ($this->_showDrafts()) {
-            $this->_collection->addStatusFilter(NeoTheme_Blog_Model_Post::STATUS_DRAFT);
-        }
+            if ($this->_showDrafts()) {
+                $this->_collection->addStatusFilter(NeoTheme_Blog_Model_Post::STATUS_DRAFT);
+            }
 
-        $session = Mage::getSingleton('customer/session');
-        if (Mage::getStoreConfig(NeoTheme_Blog_Helper_Data::XPATH_CUSTOMER_GROUP_FILTERING)) {
-            $this->_collection->addCustomerGroupFilter($session->getCustomerGroupId());
-        }
-        if ($this->getCategoryId()) {
-            $this->_collection->addCategoryFilter($this->getCategoryId());
-        } 
-        elseif ($this->getUseCustomerPreferences()) {
-            if ($session->isLoggedIn() && $session->getCustomer()->getDefaultBlogCategoryIds()) {
-                try {
-                    $userChosenIds = explode(",", $session->getCustomer()->getDefaultBlogCategoryIds());
-                    if (count($userChosenIds)) {
-                        $this->_collection->addCategoryFilter($userChosenIds);
+            $session = Mage::getSingleton('customer/session');
+            if (Mage::getStoreConfig(NeoTheme_Blog_Helper_Data::XPATH_CUSTOMER_GROUP_FILTERING)) {
+                $this->_collection->addCustomerGroupFilter($session->getCustomerGroupId());
+            }
+            if ($this->getCategoryId()) {
+                $this->_collection->addCategoryFilter($this->getCategoryId());
+            }
+            elseif ($this->getUseCustomerPreferences()) {
+                if ($session->isLoggedIn() && $session->getCustomer()->getDefaultBlogCategoryIds()) {
+                    try {
+                        $userChosenIds = explode(",", $session->getCustomer()->getDefaultBlogCategoryIds());
+                        if (count($userChosenIds)) {
+                            $this->_collection->addCategoryFilter($userChosenIds);
+                        }
+                    } catch (Exception $ex) {
+                        Mage::log($ex->getTraceAsString(), null, "neotheme_blog.log");
                     }
-                } catch (Exception $ex) {
-                    Mage::log($ex->getTraceAsString(), null, "neotheme_blog.log");
                 }
             }
+        }else{/*Show sub category of current category*/
+            $this->_collection = Mage::getModel('neotheme_blog/category')
+                ->getCollection()
+                ->addStoreFilter()
+                ->addStatusFilter(NeoTheme_Blog_Model_Post::STATUS_ACTIVE)
+                ->addFieldToFilter('parent',array('like'=>"%".$catId."%"));
         }
+
         return $this->_collection;
     }
 
@@ -121,7 +133,7 @@ class NeoTheme_Blog_Block_Post_List extends Mage_Core_Block_Template implements 
     function _prepareLayout() {
 
         $pager = $this->getLayout()->createBlock('page/html_pager', 'custom.pager');
-        $pager->setAvailableLimit(array(5 => 5, 10 => 10, 20 => 20, 'all' => 'all'));
+        $pager->setAvailableLimit(array(6 => 6, 15 => 15, 21 => 21, 'all' => 'all'));
 
         $this->setChild('pager', $pager);
         parent::_prepareLayout();
