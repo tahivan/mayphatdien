@@ -99,14 +99,14 @@ $catCollection = $this->getCatCollection();
                             <div id="frame">
                                 <?php $i = 1; ?>
                                 <?php foreach ($catCollection as $post): ?>
-                                    <div id="slider-<?php echo $i; ?>" class="product-block">
-                                        <a href="<?php echo $post->getReadMoreUrl(); ?>">
-                                            <img src="<?php echo Mage::getBaseUrl('media') . 'blog_category_image' .'/' . Mage::helper('neotheme_blog')->reImageName($post->getImage()); ?>" class="product-image">
+                                    <div style="width: 300px; height: 300px" id="slider-<?php echo $i; ?>" class="product-block">
+                                        <a href="<?php echo Mage::getBaseUrl().'blog/'.$post->getCmsIdentifier(); ?>">
+                                            <img style="width: 200px;height: 200px" src="<?php echo Mage::getBaseUrl('media') . 'blog_category_image' .'/' . Mage::helper('neotheme_blog')->reImageName($post->getImage()); ?>" class="product-image">
                                         </a>
                                         <br><br>
-                                        <h4><a href="<?php echo Mage::getBaseUrl().'blog/'.$post->getCmsIdentifier(); ?>"><?php echo $post->getName(); ?></a></h4>
+                                        <h3><a href="<?php echo Mage::getBaseUrl().'blog/'.$post->getCmsIdentifier(); ?>"><?php echo $post->getName(); ?></a></h3>
                                     </div>
-                                <?php endforeach; ?>
+                                <?php $i++; endforeach; ?>
                             </div>
                         </div>
                     </div>
