@@ -1,0 +1,15 @@
+<?php
+$collection = $this->getHotNews();
+?>
+
+<div class="block-footer block-footer-2">
+    <div class="block-footer-title"><strong><?php echo $this->__('Tin nổi bật'); ?></strong></div>
+    <div class="block-footer-content">
+        <?php foreach ($collection as $post): ?>
+            <h2><span><?php echo date('d M Y', strtotime($post->getCreatedAt())); ?></span></h2>
+            <p class="new-content">
+                <?php echo $post->getSummary(); ?>
+            </p>
+        <?php endforeach; ?>
+    </div>
+</div>

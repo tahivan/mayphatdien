@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SM_Customize>
+            <version>0.1.0</version>
+        </SM_Customize>
+    </modules>
+    <global>
+        <models>
+            <sm_customize>
+                <class>SM_Customize_Model</class>
+            </sm_customize>
+        </models>
+        <blocks>
+            <sm_customize>
+                <class>SM_Customize_Block</class>
+            </sm_customize>
+        </blocks>
+        <helpers>
+            <sm_customize>
+                <class>SM_Customize_Helper</class>
+            </sm_customize>
+        </helpers>
+        <resources>
+            <sm_customize_setup>
+                <setup>
+                    <module>SM_Customize</module>
+                </setup>
+            </sm_customize_setup>
+        </resources>
+    </global>
+</config>

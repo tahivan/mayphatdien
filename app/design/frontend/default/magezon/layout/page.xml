@@ -86,7 +86,7 @@ Default layout, loads most of the pages
 				<block type="core/text_list" name="top.menu" as="topMenu"/>
                 <block type="page/switch" name="store_switcher" as="store_switcher" template="page/switch/stores.phtml"/>
                 <block type="page/template_links" name="footer_links" as="footer_links" template="page/template/links-follow.phtml"/>
-
+                <block type="sm_customize/footer_news" name="footer_other_news" template="page/html/footer/other_news.phtml"/>
             </block>
 
             <block type="core/text_list" name="before_body_end" as="before_body_end"/>
