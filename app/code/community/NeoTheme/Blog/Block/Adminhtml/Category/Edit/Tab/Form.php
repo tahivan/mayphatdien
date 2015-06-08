@@ -9,11 +9,11 @@
  * that is bundled with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
  * http://www.neotheme.com/legal/licenses/NDSM.html
- * If the license is not included with the package or for any other reason, 
- * you did not receive your licence please send an email to 
+ * If the license is not included with the package or for any other reason,
+ * you did not receive your licence please send an email to
  * license@neotheme.com so we can send you a copy immediately.
  *
- * This software comes with no warrenty of any kind. By Using this software, the user agrees to hold 
+ * This software comes with no warrenty of any kind. By Using this software, the user agrees to hold
  * Neo Industries Pty Ltd harmless of any damage it may cause.
  *
  * @category    modules
@@ -21,7 +21,7 @@
  * @copyright   Copyright (c) 2011 Neo Industries Pty Ltd (http://www.neotheme.com)
  * @license     http://www.neotheme.com/  Non-Distributable Software Modification License(NDSML 1.0)
  */
-class NeoTheme_Blog_Block_Adminhtml_Category_Edit_Tab_Form 
+class NeoTheme_Blog_Block_Adminhtml_Category_Edit_Tab_Form
 extends Mage_Adminhtml_Block_Widget_Form {
 
     protected $attributeCollection;
@@ -39,7 +39,7 @@ extends Mage_Adminhtml_Block_Widget_Form {
         $form = new Varien_Data_Form(
                         array(
                             'id' => 'edit_form',
-                            'action' => $this->getUrl('*/*/save', array('id' => $this->getRequest()->getParam('id'), 
+                            'action' => $this->getUrl('*/*/save', array('id' => $this->getRequest()->getParam('id'),
                                                                         'store' => $this->getRequest()->getParam('store'))),
                             'method' => 'post',
                             'enctype' => 'multipart/form-data',
@@ -70,7 +70,7 @@ extends Mage_Adminhtml_Block_Widget_Form {
           'name'      => 'summary',
           'note'      => 'Not seen in the frontend publicly. Visible in RSS Feed.'
           ));
-         
+
           $fieldset->addField('status', 'select', array(
           'label'     => Mage::helper('neotheme_blog')->__('Status'),
           'name'      => 'status',
@@ -99,6 +99,35 @@ extends Mage_Adminhtml_Block_Widget_Form {
                 ),
             ),
         ));
+        $fieldset->addField('show_child_category_first', 'select', array(
+            'label'     => Mage::helper('neotheme_blog')->__('Show children category first'),
+            'name'      => 'show_child_category_first',
+            'values'    => array(
+                array(
+                    'value'     => 1,
+                    'label'     => Mage::helper('neotheme_blog')->__('Yes'),
+                ),
+                array(
+                    'value'     => 0,
+                    'label'     => Mage::helper('neotheme_blog')->__('No'),
+                ),
+            ),
+        ));
+        $fieldset->addField('parent', 'multiselect', array(
+            'label'     => Mage::helper('neotheme_blog')->__('Parent'),
+            'name'      => 'parent',
+            'required' => false,
+            'values'    => $this->getParentCategory(),
+            'disabled' => false
+        ));
+
+        $fieldset->addField('image', 'image', array(
+            'name'      => 'image',
+            'label'     => Mage::helper('cms')->__('Image'),
+            'title'     => Mage::helper('cms')->__('Image'),
+            'required'  => false
+        ));
+
         $isElementDisabled = false;
         if (!Mage::app()->isSingleStoreMode()) {
             $fieldset->addField('store_ids', 'multiselect', array(
@@ -117,7 +146,12 @@ extends Mage_Adminhtml_Block_Widget_Form {
 
         }
 
-        $form->addValues(Mage::registry('current_category')->getData());
+        $data = Mage::registry('current_category')->getData();
+        if (isset($data['image']) && $data['image']) {
+            $imageName = Mage::helper('neotheme_blog')->reImageName($data['image']);
+            $data['image'] = 'blog_category_image' . '/' . $imageName;
+        }
+        $form->addValues($data);
         $form->setFieldNameSuffix('category');
         if (Mage::getSingleton('adminhtml/session')->getBlogCategoryData()) {
             $form->setValues(Mage::getSingleton('adminhtml/session')->getBlogCategoryData());
@@ -126,6 +160,26 @@ extends Mage_Adminhtml_Block_Widget_Form {
 
         $this->setForm($form);
         return parent::_prepareForm();
+    }
+
+    public function getParentCategory(){
+        $options = array();
+        $curId = $this->getRequest()->getParam('id');
+        $data = Mage::getModel('neotheme_blog/category')->getCollection()
+            ->addFieldToSelect('entity_id')
+            ->addFieldToSelect('name')
+            ->addFieldToFilter('entity_id',array('neq'=>$curId))->getData();
+        $options[] = array(
+            'label' => Mage::helper('adminhtml')->__('None'),
+            'value' => 0
+        );
+        foreach ( $data as $k => $v ) {
+            $options[] = array(
+                'label' => Mage::helper('adminhtml')->__($v['name']),
+                'value' => $v['entity_id']
+            );
+        }
+        return $options;
     }
 
 }

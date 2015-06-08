@@ -38,6 +38,12 @@ class NeoTheme_Blog_Model_Abstract_Store extends  NeoTheme_Blog_Model_Abstract {
         if ($this->getStoreIds() != NULL && is_array($this->getStoreIds())){
             $this->setStoreIds(implode(",", $this->getStoreIds()));
         }
+
+        if ($this->getParent() != NULL && is_array($this->getParent())){
+            $targetParent = implode(",", $this->getParent());
+            $this->setParent($targetParent);
+        }
+
         parent::save();
     }
     

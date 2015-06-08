@@ -106,6 +106,18 @@ class NeoTheme_Blog_Block_Post_List extends Mage_Core_Block_Template implements 
         return $this->_collection;
     }
 
+    function getCatCollection(){
+        $category = $this->getCategory();
+        $catId = $category->getId();
+
+        $collection = Mage::getModel('neotheme_blog/category')
+            ->getCollection()
+            ->addStoreFilter()
+            ->addStatusFilter(NeoTheme_Blog_Model_Post::STATUS_ACTIVE)
+            ->addFieldToFilter('parent',array('like'=>"%".$catId."%"));
+        return $collection;
+    }
+
     function _prepareLayout() {
 
         $pager = $this->getLayout()->createBlock('page/html_pager', 'custom.pager');

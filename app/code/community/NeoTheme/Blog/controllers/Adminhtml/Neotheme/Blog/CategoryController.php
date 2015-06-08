@@ -91,11 +91,22 @@ class NeoTheme_Blog_Adminhtml_Neotheme_Blog_CategoryController extends NeoTheme_
     protected $_postData;
     protected function _getPostData(){
         if ($this->_postData == null){
-            $this->_postData = array_merge( $this->getRequest()->getPost('category'),
+            $data = array_merge( $this->getRequest()->getPost('category'),
                                             $this->getRequest()->getPost('design_data'),
                                             $this->getRequest()->getPost('meta_data')
 
             );
+            if (isset($data['image']['delete'])) {
+                $this->deleteImageFile($data['image']['value']);
+            }
+            $image = $this->uploadBannerImage();
+            if ($image || (isset($data['image']['delete']) && $data['image']['delete'])) {
+                $data['image'] = $image;
+            } else {
+                unset($data['image']);
+            }
+            $this->_postData = $data;
+
             if (count($this->_postData) == 0){
                 $this->_postData = null;
             }
@@ -154,5 +165,46 @@ class NeoTheme_Blog_Adminhtml_Neotheme_Blog_CategoryController extends NeoTheme_
         }
         Mage::getSingleton('adminhtml/session')->addError(Mage::helper('neotheme_blog')->__('Unable to find item to save'));
         $this->_redirect('*/*/', array('store' => $storeId));
+    }
+
+    public static function uploadBannerImage() {
+        $banner_image_path = Mage::getBaseDir('media') . DS . 'blog_category_image';
+        $image = "";
+        if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
+            try {
+                /* Starting upload */
+                $uploader = new Varien_File_Uploader('image');
+
+                // Any extention would work
+                $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
+                $uploader->setAllowRenameFiles(true);
+
+                $uploader->setFilesDispersion(true);
+
+                $uploader->save($banner_image_path, $uploader->getCorrectFileName($_FILES['image']['name']));
+                // Add by Hoang Vuong: 30/08/2013
+                $image = substr(strrchr($uploader->getUploadedFileName(), "/"), 1);
+            } catch (Exception $e) {
+
+            }
+
+            // $image = $_FILES['image']['name'];
+        }
+        return $image;
+    }
+
+    public function deleteImageFile($image) {
+        if (!$image) {
+            return;
+        }
+        $banner_image_path = $_SERVER['DOCUMENT_ROOT'] .DS.'media'.DS. $image;
+        if (!file_exists($banner_image_path)) {
+            return;
+        }
+        try {
+            unlink($banner_image_path);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
 }

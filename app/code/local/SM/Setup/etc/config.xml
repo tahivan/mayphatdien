@@ -2,7 +2,7 @@
 <config>
     <modules>
         <SM_Setup>
-            <version>0.1.3</version>
+            <version>0.1.5</version>
         </SM_Setup>
     </modules>
     <global>
