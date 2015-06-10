@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="top.links">
+            <action method="removeLinkByUrl">
+                <url helper="checkout/cart/getCartUrl"/>
+            </action>
+            <action method="removeLinkByUrl">
+                <url helper="customer/getAccountUrl"/>
+            </action>
+            <action method="removeLinkByUrl">
+                <url helper="sm_customize/getCheckoutUrl"/>
+            </action>
+            <action method="removeLinkByUrl">
+                <url helper="sm_customize/getBlogUrl"/>
+            </action>
+        </reference>
+    </default>
+</layout>
