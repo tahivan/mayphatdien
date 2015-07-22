@@ -64,6 +64,9 @@ class NeoTheme_Blog_Block_Post_List extends Mage_Core_Block_Template implements 
     function _prepareCollection() {
 
         $category = $this->getCategory();
+        if(!$category){
+            $category = Mage::getModel('catalog/category')->load(2);
+        }
         $catId = $category->getId();
 
         if($category->getShowChildCategoryFirst() == '0'){/*Show normal post*/

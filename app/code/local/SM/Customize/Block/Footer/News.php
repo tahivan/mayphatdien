@@ -7,7 +7,7 @@ class SM_Customize_Block_Footer_News extends NeoTheme_Blog_Block_Post_List
 
     public function __construct()
     {
-        $this->setLimit(2);
+        $this->setLimit(3);
     }
 
     public function getHotNews()

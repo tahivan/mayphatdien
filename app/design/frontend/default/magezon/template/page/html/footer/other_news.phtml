@@ -5,10 +5,10 @@ $collection = $this->getHotNews();
 <div class="block-footer block-footer-2">
     <div class="block-footer-title"><strong><?php echo $this->__('Tin nổi bật'); ?></strong></div>
     <div class="block-footer-content">
-        <?php foreach ($collection as $post): ?>
-            <h2><span><?php echo date('d M Y', strtotime($post->getCreatedAt())); ?></span></h2>
+        <?php foreach ($collection->getData() as $post): ?>
+            <h2><span><?php echo date('d M Y', strtotime($post['created_at'])); ?></span></h2>
             <p class="new-content">
-                <?php echo $post->getSummary(); ?>
+                <a href="<?php echo Mage::getBaseUrl() . "blog/tin-tuc/" . $post['cms_identifier']; ?>"><?php echo $post['title']; ?></a>
             </p>
         <?php endforeach; ?>
     </div>
