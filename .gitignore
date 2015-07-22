@@ -2,3 +2,10 @@ var/cache/
 var/session/
 media/
 .idea/
+app/etc/local.xml
+errors/local.xml.sample
+errors/local.xml
+app/etc/local(1).xml
+app/etc/local2705.xml
+app/etc/local_bak.xml
+var/report/
