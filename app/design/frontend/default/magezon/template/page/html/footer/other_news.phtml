@@ -3,7 +3,7 @@ $collection = $this->getHotNews();
 ?>
 
 <div class="block-footer block-footer-2">
-    <div class="block-footer-title"><strong><?php echo $this->__('Tin nổi bật'); ?></strong></div>
+    <div class="block-footer-title"><strong><?php echo $this->__('Tin tức nổi bật'); ?></strong></div>
     <div class="block-footer-content">
         <?php foreach ($collection->getData() as $post): ?>
             <h2><span><?php echo date('d M Y', strtotime($post['created_at'])); ?></span></h2>
