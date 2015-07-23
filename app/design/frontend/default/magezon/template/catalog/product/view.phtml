@@ -81,7 +81,9 @@
 				<?php else:?>
 					<?php echo $this->getChildHtml('addto') ?>
 				<?php endif; ?>
-
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <br>
+                <div class="addthis_native_toolbox"></div>
 				<?php if ($_product->getShortDescription()):?>
 					<div class="short-description std">
 						<strong><?php echo $this->__('Quick Overview') ?></strong>
