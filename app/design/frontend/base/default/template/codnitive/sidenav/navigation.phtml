@@ -42,16 +42,6 @@
         <?php endif; ?>
         <?php echo $categories; ?>
         </ul>
-        <?php if ($this->showSupportLogo()): ?>
-        <div class="clearer support-logo-wrapper"></div>
-        <a href="http://www.codnitive.com/" target="_blank" class="support_logo">
-            <?php if ($this->showAsImage()): ?>
-            <img src="<?php echo $this->getSkinUrl('images/codnitive/sidenav/codnitive_logo.png'); ?>" alt="CODNITIVE&reg;" title="Sidebar Navigation by CODNITIVE"/>
-            <?php else: ?>
-            <span>CODNITIVE&REG;</span>
-            <?php endif; ?>
-        </a>
-        <?php endif; ?>
     </div>
     <?php if ($this->getConfig()->isCollapsible()): ?>
     <script type="text/javascript" language="javascript">
