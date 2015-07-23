@@ -132,3 +132,19 @@
         <?php echo $this->getChildHtml('product_additional_data') ?>
     </div>
 </div>
+<?php
+$product = Mage::registry('current_product');
+$desc = '';
+?>
+<?php
+if($product):
+    $desc = $product->getShortDescription();
+    ?>
+    <!-- for Google -->
+    <meta name="description" content="<?php echo $desc; ?>" />
+    <!-- for Facebook -->
+    <meta property="og:description" content="<?php echo $desc; ?>" />
+    <meta property="og:type" content="article" />
+    <!-- for Twitter -->
+    <meta name="twitter:description" content="<?php echo $desc; ?>" />
+<?php endif; ?>
