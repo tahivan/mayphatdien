@@ -855,7 +855,7 @@ button.addcart span span{ background:url(../images/btn_cart_2.gif) no-repeat scr
 
 /* Product Images */
 .product-view .product-img-box { float:left; width:311px; }
-.product-view .product-img-box .product-image { border:1px solid #dfdfdf; }
+.product-view .product-img-box .product-image { border:none; }
 .product-view .product-img-box .product-image-zoom { position:relative; width:309px; height:320px; overflow:hidden; z-index:9; }
 .product-view .product-img-box .product-image-zoom img { position:absolute; left:0; top:0; cursor:move; }
 .product-view .product-img-box .zoom-notice { text-align:center; padding:10px 0px; }
