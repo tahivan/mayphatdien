@@ -159,7 +159,7 @@ HTML;
         $contactLinkUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'contacts';
         $contactLinkText = $this->__('Liên hệ');
         $contactLink = <<<HTML
-                <div class="menu">
+                <div class="menu last">
                     <div class="parentMenu menu0">
                         <a href="$contactLinkUrl">
                             <span>$contactLinkText</span>
