@@ -25,16 +25,24 @@
  */
 ?>
 <div class="header-container">
-	<div class="header">
-		<?php echo $this->getChildHtml('logo') ?>
-		<div class="mw_right_head">
-			<?php echo $this->getChildHtml('topLinks') ?>
-			<p class="welcome-msg"><?php echo $this->getWelcome()?></p>
-			<div class="clear_both"><span></span></div>
-			<?php echo $this->getChildHtml('topSearch') ?>
-			<?php //echo $this->getChildHtml('store_language') ?>
-		</div>
-		<div class="clear_both"><span> </span></div>
-	</div>
+    <div class="header">
+        <?php echo $this->getChildHtml('logo') ?>
+        <div class="mw_right_head">
+            <div style="margin-top: 16px;height: 12px;">
+                <?php echo $this->getChildHtml('topLinks') ?>
+                <p class="welcome-msg"><?php echo $this->getWelcome() ?></p>
+            </div>
+            <?php echo $this->getChildHtml('topSearch') ?>
+            <?php //echo $this->getChildHtml('store_language') ?>
+        </div>
+        <div class="clear_both"><span> </span></div>
+    </div>
 </div>
 <?php echo $this->getChildHtml('topnav') ?>
+<script>
+    jQuery(document).ready(function () {
+        if (!!navigator.userAgent.match(/Trident\/7\./)) {
+            jQuery('.mw_search').css({left: '250px'});
+        }
+    });
+</script>

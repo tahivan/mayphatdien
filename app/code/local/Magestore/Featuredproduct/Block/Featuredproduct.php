@@ -15,7 +15,7 @@ class Magestore_Featuredproduct_Block_Featuredproduct extends Mage_Catalog_Block
             ->addAttributeToFilter('fb_product', array('eq' => '1'))
 			->addStoreFilter()
             ->setOrder('feature_position', 'ASC');
-    
+
 		Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($products);
 		//comment by viet update version magento CM 1.9.0.1
 		//Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($products);
