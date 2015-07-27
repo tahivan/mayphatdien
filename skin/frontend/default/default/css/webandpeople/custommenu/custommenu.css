@@ -31,6 +31,8 @@ div.menu a span {
 }
 div.menu a span:hover {
     cursor: pointer;
+    display: block;
+    height: 27px;
 }
 div.wp-custom-menu-popup {
     position: absolute;
@@ -178,6 +180,10 @@ div.menu {
     font-size: 14px;
     text-transform: uppercase;
     font-family: "Segoe UI";
+    background: rgba(0, 0, 0, 0) url("../../../images/bg_li_block.gif") no-repeat scroll right center;
+}
+div.menu.last{
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
 }
 a.level1:link, a.level1:visited {
     text-transform: none;
