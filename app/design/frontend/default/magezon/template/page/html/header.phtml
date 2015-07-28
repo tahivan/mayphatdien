@@ -40,9 +40,14 @@
 </div>
 <?php echo $this->getChildHtml('topnav') ?>
 <script>
-    jQuery(document).ready(function () {
+    jQuery(document).ready(function ($) {
         if (!!navigator.userAgent.match(/Trident\/7\./)) {
             jQuery('.mw_search').css({left: '250px'});
+        }
+
+        $.browser.chrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase());
+        if ($.browser.chrome) {
+            jQuery('.mw_search').css({margin: '0px'});
         }
     });
 </script>
