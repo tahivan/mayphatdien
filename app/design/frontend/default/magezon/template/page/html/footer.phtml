@@ -39,13 +39,7 @@
 	</div>
 </footer>
 <script>
-    jQuery(window).load(function(){
+    jQuery(document).ready(function(){
         jQuery('footer').parents('b').replaceWith( jQuery('footer'));
-        var targetElm = jQuery('#main-slider').find('.product-block').find('.product-info').find('.product-des').find('p');
-        targetElm.each(function(){
-            var boldText = '<b>'+targetElm.find('strong').text()+'</b>';
-            targetElm.find('strong').replaceWith(boldText);
-            targetElm.replaceWith(targetElm.html());
-        });
     });
 </script>
