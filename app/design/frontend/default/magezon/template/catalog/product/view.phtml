@@ -148,3 +148,17 @@ if($product):
     <!-- for Twitter -->
     <meta name="twitter:description" content="<?php echo $desc; ?>" />
 <?php endif; ?>
+<script>
+    jQuery(document).ready(function($){
+        $('.short-description').find('p').each(function() {
+            var $this = $(this);
+            if($this.html().replace(/\s|&nbsp;/g, '').length == 0)
+                $this.remove();
+            $this.find('strong').each(function(){
+                var boldText =   $(this).html();
+                var targetText = '<b>'+boldText+'</b>'
+                $(this).replaceWith(targetText);
+            });
+        });
+    });
+</script>
